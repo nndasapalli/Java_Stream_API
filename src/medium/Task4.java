@@ -3,6 +3,7 @@ package medium;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Medium 4. Group Students by Grade
@@ -29,16 +30,17 @@ public class Task4 {
 
     public static void main(String[] args) {
         List<Student> students = Arrays.asList(
-                new Student("Alice", "A"),
-                new Student("Bob", "B"),
-                new Student("Charlie", "A"),
-                new Student("David", "C"),
-                new Student("Eve", "B")
+                new Student("Alice",    "A"),
+                new Student("Bob",      "B"),
+                new Student("Charlie",  "A"),
+                new Student("David",    "C"),
+                new Student("Eve",      "B")
         );
         System.out.println("students : " + students);
 
         // Write your code here
-        Map<String, List<Student>> result = null;
+        Map<String, List<Student>> result = students.stream()
+                .collect(Collectors.groupingBy(student -> student.grade));
         System.out.println("result : " + result);
     }
 }

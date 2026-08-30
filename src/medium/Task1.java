@@ -1,8 +1,10 @@
 package medium;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Medium 1. Find Duplicate Elements
@@ -16,7 +18,10 @@ public class Task1 {
         System.out.println("numbers : " + numbers);
 
         // Write your code here
-        Set<Integer> result = null;
+        Set<Integer> duplicate = new HashSet<Integer>();
+        Set<Integer> result = numbers.stream()
+                .filter(number -> !duplicate.add(number))
+                .collect(Collectors.toSet());
         System.out.println("result : " + result);
     }
 }

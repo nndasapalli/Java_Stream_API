@@ -1,9 +1,7 @@
 package medium;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Medium 9. Highest Paid Employee per Department
@@ -33,16 +31,24 @@ public class Task9 {
 
     public static void main(String[] args) {
         List<Employee> employees = Arrays.asList(
-                new Employee("Alice", "Engineering", 55000),
-                new Employee("Bob", "Sales", 42000),
-                new Employee("Charlie", "Engineering", 68000),
-                new Employee("David", "Sales", 51000),
-                new Employee("Eve", "Engineering", 60000)
+                new Employee("Alice",   "Engineering",  55000),
+                new Employee("Bob",     "Sales",        42000),
+                new Employee("Charlie", "Engineering",  68000),
+                new Employee("David",   "Sales",        51000),
+                new Employee("Eve",     "Engineering",  60000)
         );
         System.out.println("employees : " + employees);
 
         // Write your code here
-        Map<String, Optional<Employee>> result = null;
+        Map<String, Optional<Employee>> result = employees.stream()
+                .collect(Collectors.groupingBy(
+                        employee -> employee.department,
+                        Collectors.maxBy(
+                                Comparator.comparingDouble(
+                                employee -> employee.salary
+                                )
+                        )
+                ));
         System.out.println("result : " + result);
     }
 }

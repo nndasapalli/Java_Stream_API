@@ -3,6 +3,7 @@ package medium;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Medium 7. Multi-Level Grouping
@@ -33,16 +34,22 @@ public class Task7 {
 
     public static void main(String[] args) {
         List<Employee> employees = Arrays.asList(
-                new Employee("Alice", "Engineering", "Senior"),
-                new Employee("Bob", "Engineering", "Junior"),
-                new Employee("Charlie", "Sales", "Senior"),
-                new Employee("David", "Engineering", "Senior"),
-                new Employee("Eve", "Sales", "Junior")
+                new Employee("Alice",   "Engineering", "Senior"),
+                new Employee("Bob",     "Engineering", "Junior"),
+                new Employee("Charlie", "Sales",        "Senior"),
+                new Employee("David",   "Engineering", "Senior"),
+                new Employee("Eve",     "Sales",        "Junior")
         );
         System.out.println("employees : " + employees);
 
         // Write your code here
-        Map<String, Map<String, List<Employee>>> result = null;
+        Map<String, Map<String, List<Employee>>> result = employees.stream()
+                .collect(Collectors.groupingBy(
+                        employee -> employee.department,
+                        Collectors.groupingBy(
+                                employee -> employee.grade
+                        )
+                ));
         System.out.println("result : " + result);
     }
 }

@@ -1,7 +1,9 @@
 package medium;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Medium 10. Sort by Multiple Fields
@@ -32,16 +34,26 @@ public class Task10 {
 
     public static void main(String[] args) {
         List<Employee> employees = Arrays.asList(
-                new Employee("Alice", "Engineering", 55000),
-                new Employee("Bob", "Sales", 42000),
-                new Employee("Charlie", "Engineering", 68000),
-                new Employee("David", "Sales", 51000),
-                new Employee("Eve", "Engineering", 60000)
+                new Employee("Alice",   "Engineering",  55000),
+                new Employee("Bob",     "Sales",        42000),
+                new Employee("Charlie", "Engineering",  68000),
+                new Employee("David",   "Sales",        51000),
+                new Employee("Eve",     "Engineering",  60000)
         );
         System.out.println("employees : " + employees);
 
         // Write your code here
-        List<Employee> result = null;
+        List<Employee> result = employees.stream()
+                .sorted(
+                        Comparator.comparing(
+                                (Employee employee) -> employee.department
+                        ).thenComparing(
+                                Comparator.comparingDouble(
+                                        (Employee employee) -> employee.salary)
+                                        .reversed()
+                        )
+                )
+                .collect(Collectors.toList());
         System.out.println("result : " + result);
     }
 }

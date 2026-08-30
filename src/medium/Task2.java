@@ -1,7 +1,10 @@
 package medium;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Medium 2. Sort a List of Objects
@@ -30,15 +33,17 @@ public class Task2 {
 
     public static void main(String[] args) {
         List<Employee> employees = Arrays.asList(
-                new Employee("Alice", "Engineering", 55000),
-                new Employee("Bob", "Sales", 42000),
+                new Employee("Alice",   "Engineering", 55000),
+                new Employee("Bob",     "Sales",       42000),
                 new Employee("Charlie", "Engineering", 68000),
-                new Employee("David", "Sales", 51000)
+                new Employee("David",   "Sales",       51000)
         );
         System.out.println("employees : " + employees);
 
         // Write your code here
-        List<Employee> result = null;
+        List<Employee> result = employees.stream()
+                .sorted(Comparator.comparing(employee -> employee.salary))
+                .collect(Collectors.toCollection(ArrayList::new));
         System.out.println("result : " + result);
     }
 }
