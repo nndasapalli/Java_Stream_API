@@ -17,7 +17,8 @@ public class Task7 {
         System.out.println("words : " + words);
 
         // Write your code here
-        String result = null;
+        String result = words.stream()
+                .collect(java.util.stream.Collectors.joining(", " , "[", "]"));
         System.out.println("result : " + result);
     }
 }
