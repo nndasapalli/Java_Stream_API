@@ -38,7 +38,9 @@ public class Task2 {
         System.out.println("employees : " + employees);
 
         // Write your code here
-        List<Employee> result = null;
+        List<Employee> result = employees.stream()
+                .sorted((e1, e2) -> Double.compare(e2.salary, e1.salary))
+                .collect(java.util.stream.Collectors.toList());
         System.out.println("result : " + result);
     }
 }

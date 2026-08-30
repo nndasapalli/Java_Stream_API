@@ -16,7 +16,10 @@ public class Task1 {
         System.out.println("numbers : " + numbers);
 
         // Write your code here
-        Set<Integer> result = null;
+        List<Integer> result = numbers.stream()
+                .filter(n -> numbers.indexOf(n) != numbers.lastIndexOf(n))
+                .distinct()
+                .collect(java.util.stream.Collectors.toList());
         System.out.println("result : " + result);
     }
 }
