@@ -18,9 +18,15 @@ public class Task8 {
         System.out.println("numbers : " + numbers);
 
         // Write your code here
-        boolean allPositive = false;
-        boolean anyGreaterThan100 = false;
-        boolean noneNegative = false;
+        boolean allPositive = numbers.stream()
+                .allMatch(number -> number > 0);
+
+        boolean anyGreaterThan100 = numbers.stream()
+                .anyMatch(number -> number > 100);
+
+        boolean noneNegative = numbers.stream()
+                .noneMatch(number -> number < 0);
+
         System.out.println("allPositive : " + allPositive);
         System.out.println("anyGreaterThan100 : " + anyGreaterThan100);
         System.out.println("noneNegative : " + noneNegative);

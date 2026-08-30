@@ -15,7 +15,9 @@ public class Task6 {
         System.out.println("words : " + words);
 
         // Write your code here
-        long result = 0;
+        long result = words.stream()
+                .filter(word -> word.startsWith("A"))
+                .count();
         System.out.println("result : " + result);
     }
 }
