@@ -1,8 +1,10 @@
 package advanced;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Advanced 3. Find Second Highest Number
@@ -16,7 +18,12 @@ public class Task3 {
         System.out.println("numbers : " + numbers);
 
         // Write your code here
-        Optional<Integer> result = null;
+        Optional<Integer> result = numbers.stream()
+                .sorted(Comparator.reverseOrder())
+                .distinct()
+                .skip(1)
+                .findFirst();
+
         System.out.println("result : " + result);
     }
 }

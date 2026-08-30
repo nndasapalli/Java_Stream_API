@@ -2,6 +2,7 @@ package advanced;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Advanced 1. FlatMap Nested Lists
@@ -19,7 +20,10 @@ public class Task1 {
         System.out.println("numbers : " + numbers);
 
         // Write your code here
-        List<Integer> result = null;
+        List<Integer> result = numbers.stream()
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+
         System.out.println("result : " + result);
     }
 }

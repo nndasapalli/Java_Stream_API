@@ -3,6 +3,7 @@ package advanced;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Advanced 2. Partition Numbers Into Even and Odd
@@ -16,7 +17,13 @@ public class Task2 {
         System.out.println("numbers : " + numbers);
 
         // Write your code here
-        Map<Boolean, List<Integer>> result = null;
+        Map<Boolean, List<Integer>> result = numbers.stream()
+                .collect(
+                        Collectors.partitioningBy(
+                                number -> number % 2 == 0
+                        )
+                );
+
         System.out.println("result : " + result);
     }
 }
