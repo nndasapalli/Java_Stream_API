@@ -16,7 +16,9 @@ public class Task5 {
         System.out.println("words : " + words);
 
         // Write your code here
-        List<String> result = null;
+        List<String> result = words.stream()
+                .filter(word -> word != null && !word.isEmpty())
+                .collect(Collectors.toList());
         System.out.println("result : " + result);
     }
 }

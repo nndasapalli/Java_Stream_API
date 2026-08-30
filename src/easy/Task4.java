@@ -16,7 +16,9 @@ public class Task4 {
         System.out.println("words : " + words);
 
         // Write your code here
-        List<Integer> result = null;
+        List<Integer> result = words.stream()
+                .map(String::length)
+                .collect(Collectors.toList());
         System.out.println("result : " + result);
     }
 }

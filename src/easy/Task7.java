@@ -2,6 +2,7 @@ package easy;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Easy 7. Join With Prefix and Suffix
@@ -17,7 +18,8 @@ public class Task7 {
         System.out.println("words : " + words);
 
         // Write your code here
-        String result = null;
+        String result = words.stream()
+                .collect(Collectors.joining(", ", "[", "]"));
         System.out.println("result : " + result);
     }
 }
