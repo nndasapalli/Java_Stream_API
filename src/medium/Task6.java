@@ -40,7 +40,12 @@ public class Task6 {
         System.out.println("employees : " + employees);
 
         // Write your code here
-        Map<String, Double> result = null;
+        Map<String, Double> result = employees.stream()
+                .collect(java.util.stream.Collectors.toMap(
+                        e -> e.name,
+                        e -> e.salary,
+                        (salary1, salary2) -> Math.max(salary1, salary2)
+                ));
         System.out.println("result : " + result);
     }
 }

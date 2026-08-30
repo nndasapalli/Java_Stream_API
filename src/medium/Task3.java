@@ -16,9 +16,11 @@ public class Task3 {
         System.out.println("numbers : " + numbers);
 
         // Write your code here
-        Optional<Integer> max = null;
-        Optional<Integer> min = null;
-        System.out.println("max : " + max);
-        System.out.println("min : " + min);
+        Optional<Integer> Max = numbers.stream()
+                .max(Integer::compareTo);
+        Optional<Integer> Min = numbers.stream()
+                .min(Integer::compareTo);
+        System.out.println("max : " + Max.orElse(null));
+        System.out.println("min : " + Min.orElse(null));
     }
 }

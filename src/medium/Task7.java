@@ -42,7 +42,11 @@ public class Task7 {
         System.out.println("employees : " + employees);
 
         // Write your code here
-        Map<String, Map<String, List<Employee>>> result = null;
+        Map<String, Map<String, List<Employee>>> result = employees.stream()
+                .collect(java.util.stream.Collectors.groupingBy(
+                        e -> e.department,
+                        java.util.stream.Collectors.groupingBy(e -> e.grade)
+                ));
         System.out.println("result : " + result);
     }
 }
